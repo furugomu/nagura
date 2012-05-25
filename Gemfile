@@ -27,8 +27,7 @@ group :test do
   gem 'factory_girl_rails'
 end
 
-# Use unicorn as the app server
-# gem 'unicorn'
+gem 'thin'
 
 # Deploy with Capistrano
 # gem 'capistrano'
