@@ -8,6 +8,10 @@ module DojosHelper
     imcg_url('http://125.6.169.35/idolmaster/profile/show/'+mbgaid.to_s)
   end
 
+  def short_personality(p)
+    {'cute'=>'Cu', 'cool'=>'Co', 'passion'=>'Pa'}[p]
+  end
+
   private
 
   def imcg_url(rawurl)

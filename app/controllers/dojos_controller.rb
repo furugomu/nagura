@@ -1,48 +1,32 @@
 class DojosController < ApplicationController
   respond_to :html, :json
+  before_filter lambda{ @ranks = Rank.all }, exclude: :index
 
   def index
-    @dojos = Dojo.all
+    @dojos = Dojo.includes(:rank).all
 
     respond_with @dojos
   end
 
-  # GET /dojos/1
-  # GET /dojos/1.json
   def show
     @dojo = Dojo.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @dojo }
-    end
+    respond_with @dojo
   end
 
-  # GET /dojos/new
-  # GET /dojos/new.json
   def new
     @dojo = Dojo.new
-    @ranks = Rank.all
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @dojo }
-    end
   end
 
-  # GET /dojos/1/edit
   def edit
     @dojo = Dojo.find(params[:id])
   end
 
-  # POST /dojos
-  # POST /dojos.json
   def create
     @dojo = Dojo.new(params[:dojo])
 
     respond_to do |format|
       if @dojo.save
-        format.html { redirect_to @dojo, notice: 'Dojo was successfully created.' }
+        format.html { redirect_to :dojos, notice: t('successfully created.') }
         format.json { render json: @dojo, status: :created, location: @dojo }
       else
         format.html { render action: "new" }
@@ -51,14 +35,12 @@ class DojosController < ApplicationController
     end
   end
 
-  # PUT /dojos/1
-  # PUT /dojos/1.json
   def update
     @dojo = Dojo.find(params[:id])
 
     respond_to do |format|
       if @dojo.update_attributes(params[:dojo])
-        format.html { redirect_to @dojo, notice: 'Dojo was successfully updated.' }
+        format.html { redirect_to :dojos, notice: t('successfully updated.') }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

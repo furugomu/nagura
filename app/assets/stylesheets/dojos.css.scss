@@ -1,3 +1,35 @@
 // Place all the styles related to the dojos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  background: #F5FFFA;
+  color: black;
+}
+:link, :visited {
+  color: #00008B;
+  text-decoration: none;
+}
+:link:hover {
+  color: #00BFFF;
+}
+
+.cute {color: fuchsia; }
+.cool {color: blue; }
+.passion { color: #ff9947; }
+
+.rank-S3 { background: red; }
+.rank-SS { background: orange; }
+.rank-S { background: gold; }
+.rank-A { background: yellow; }
+.rank-B { background: #ddffcc; }
+.rank-C { background: #ddddff; }
+.rank-D {}
+.rank-E {}
+.rank-F {}
+
+td {
+  border-bottom: solid 1px silver;
+}
+
+td { white-space: nowrap; }
+td.description, td.force { white-space: normal; }

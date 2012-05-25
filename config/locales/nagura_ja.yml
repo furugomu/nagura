@@ -3,15 +3,19 @@ ja:
   cute: キュート
   cool: クール
   passion: パッション
-  Visit: 訪れる
+  Visit: 殴る
   Edit: 編集
   Destroy: 消す
   "Are you sure?": 本当に？
+  "successfully created.": できた
+  "successfully updated.": できた
+  "New %<name>s": "%<name>sを追加"
+  "Editing %<name>s": "%<name>sを編集"
 
   activerecord:
     models:
       rank: ランク
-      dojo: 道場
+      dojo: 殴られ屋さん
     attributes:
       rank:
         name: 名前

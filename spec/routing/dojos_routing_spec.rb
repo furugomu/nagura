@@ -3,6 +3,10 @@ require "spec_helper"
 describe DojosController do
   describe "routing" do
 
+    it "routes to root" do
+      get("/").should route_to("dojos#index")
+    end
+
     it "routes to #index" do
       get("/dojos").should route_to("dojos#index")
     end

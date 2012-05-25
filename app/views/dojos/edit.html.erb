@@ -1,6 +1,5 @@
-<h1>Editing dojo</h1>
+<h1><%= t('Editing %<name>s') % {name: Dojo.model_name.human} %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @dojo %> |
-<%= link_to 'Back', dojos_path %>
+<p><%= link_to 'Back', dojos_path %></p>
