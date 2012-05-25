@@ -7,10 +7,10 @@ body {
 }
 :link, :visited {
   color: #00008B;
-  text-decoration: none;
-}
-:link:hover {
-  color: #00BFFF;
+  &:hover, &:active {
+    color: white;
+    background: black;
+  }
 }
 
 .cute {color: fuchsia; }
@@ -29,7 +29,24 @@ body {
 
 td {
   border-bottom: solid 1px silver;
+  :link, :visited {
+    text-decoration: none;
+  }
 }
 
-td { white-space: nowrap; }
-td.description, td.force { white-space: normal; }
+td.operation { white-space: nowrap; }
+
+.pagination {
+  :link, .current {
+    display: inline-block;
+    text-align: center;
+    min-width: 33px;
+    line-height: 33px;
+    padding: 0;
+    text-decoration: none;
+    border: solid 1px;
+  }
+  :link {
+    background: #eee;
+  }
+}

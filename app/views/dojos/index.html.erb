@@ -26,10 +26,11 @@
     <%= content_tag(:td, short_personality(dojo.personality), 'class'=>dojo.personality) %>
     <td><%= dojo.leader %></td>
     <td class="force"><%= dojo.force %></td>
-    <td><%= link_to_dojo t('Visit'), dojo, target: '_blank' %></td>
+    <td class="operation"><%= link_to_dojo t('Visit'), dojo, target: '_blank' %></td>
     <td class="description"><%= dojo.description %></td>
-    <td><%= link_to t('Edit'), [:edit, dojo] %></td>
-    <td><%= link_to t('Destroy'), dojo, confirm: t('Are you sure?'), method: :delete %></td>
+    <td class="operation"><%= link_to t('Edit'), [:edit, dojo] %></td>
+    <td class="operation"><%= link_to t('Destroy'), dojo, confirm: t('Are you sure?'), method: :delete %></td>
   </tr>
 <% end %>
 </table>
+<%= paginate @dojos %>

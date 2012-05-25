@@ -12,6 +12,13 @@ ja:
   "New %<name>s": "%<name>sを追加"
   "Editing %<name>s": "%<name>sを編集"
 
+  views:
+    pagination:
+      first: '最初'
+      previous: '&laquo;'
+      next: '&raquo;'
+      last: '最後'
+
   activerecord:
     models:
       rank: ランク

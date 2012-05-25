@@ -1,9 +1,11 @@
 class DojosController < ApplicationController
   respond_to :html, :json
   before_filter lambda{ @ranks = Rank.all }, exclude: :index
+  caches_page :index, :if=>lambda{|c| c.params[:page].nil? }
+  cache_sweeper :dojo_sweeper
 
   def index
-    @dojos = Dojo.includes(:rank).all
+    @dojos = Dojo.includes(:rank).page(params[:page])
 
     respond_with @dojos
   end
@@ -49,8 +51,6 @@ class DojosController < ApplicationController
     end
   end
 
-  # DELETE /dojos/1
-  # DELETE /dojos/1.json
   def destroy
     @dojo = Dojo.find(params[:id])
     @dojo.destroy
