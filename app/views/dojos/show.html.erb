@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Rank:</b>
+  <%= @dojo.rank %>
+</p>
+
+<p>
+  <b>Producer type:</b>
+  <%= @dojo.personality %>
+</p>
+
+<p>
+  <b>Level:</b>
+  <%= @dojo.level %>
+</p>
+
+<p>
+  <b>Leader:</b>
+  <%= @dojo.leader %>
+</p>
+
+<p>
+  <b>Mbga:</b>
+  <%= @dojo.mbgaid %>
+</p>
+
+<p>
+  <b>Force:</b>
+  <%= @dojo.force %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @dojo.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_dojo_path(@dojo) %> |
+<%= link_to 'Back', dojos_path %>

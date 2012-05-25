@@ -1,0 +1,45 @@
+<%= form_for(@dojo) do |f| %>
+  <% if @dojo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dojo.errors.count, "error") %> prohibited this dojo from being saved:</h2>
+
+      <ul>
+      <% @dojo.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :rank_id %><br />
+    <%= f.select :rank_id, @ranks.map{|r|[r.name, r.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :personality %><br />
+    <%= f.select :personality, Dojo::PERSONALITIES %>
+  </div>
+  <div class="field">
+    <%= f.label :level %><br />
+    <%= f.number_field :level %>
+  </div>
+  <div class="field">
+    <%= f.label :leader %><br />
+    <%= f.text_field :leader %>
+  </div>
+  <div class="field">
+    <%= f.label :mbgaid %><br />
+    <%= f.number_field :mbgaid %>
+  </div>
+  <div class="field">
+    <%= f.label :force %><br />
+    <%= f.text_field :force %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

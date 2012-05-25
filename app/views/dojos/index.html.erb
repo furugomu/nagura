@@ -1,0 +1,35 @@
+<h1>Listing dojos</h1>
+
+<table>
+  <tr>
+    <th><%= Dojo.human_attribute_name(:rank) %></th>
+    <th><%= Dojo.human_attribute_name(:level) %></th>
+    <th><%= Dojo.human_attribute_name(:mbgaid) %></th>
+    <th><%= Dojo.human_attribute_name(:personality) %></th>
+    <th><%= Dojo.human_attribute_name(:leader) %></th>
+    <th><%= Dojo.human_attribute_name(:force) %></th>
+    <th><%= Dojo.human_attribute_name(:description) %></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @dojos.each do |dojo| %>
+  <tr>
+    <td><%= dojo.rank.name %></td>
+    <td><%= dojo.level %></td>
+    <td><%= dojo.mbgaid %></td>
+    <td><%= dojo.personality %></td>
+    <td><%= dojo.leader %></td>
+    <td><%= dojo.force %></td>
+    <td><%= dojo.description %></td>
+    <td><%= link_to_dojo t('Visit'), dojo %></td>
+    <td><%= link_to t('Edit'), [:edit, dojo] %></td>
+    <td><%= link_to t('Destroy'), dojo, confirm: t('Are you sure?'), method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Dojo', new_dojo_path %>

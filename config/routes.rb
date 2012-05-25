@@ -1,4 +1,6 @@
 Nagura::Application.routes.draw do
+  resources :dojos
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

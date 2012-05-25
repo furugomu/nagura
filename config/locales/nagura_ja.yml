@@ -1,0 +1,27 @@
+# -*- encoding: UTF-8 -*-
+ja:
+  cute: キュート
+  cool: クール
+  passion: パッション
+  Visit: 訪れる
+  Edit: 編集
+  Destroy: 消す
+  "Are you sure?": 本当に？
+
+  activerecord:
+    models:
+      rank: ランク
+      dojo: 道場
+    attributes:
+      rank:
+        name: 名前
+      dojo:
+        rank: ランク
+        rank_id: ランク
+        level: レベル
+        personality: タイプ
+        leader: リーダー
+        mbgaid: モバゲーID
+        force: 防発揮値
+        force_value: 防発揮値 # ソート用
+        description: コメント
