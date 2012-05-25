@@ -28,13 +28,11 @@ module DojosHelper
 
   # ガラケー？
   def fp?
-    request.headers.include?('HTTP_X_UP_SUBNO') or
-    request.headers.include?('HTTP_X_JPHONE_UID') or
-    docomo_fp?
+    request.mobile?
   end
 
   # ドコモのガラケー？
   def docomo_fp?
-    request.user_agent.include?('DoCoMo/')
+    request.mobile.is_a?(Jpmobile::Mobile::Docomo)
   end
 end
