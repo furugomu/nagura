@@ -7,8 +7,8 @@ ja:
   Edit: 編集
   Destroy: 消す
   "Are you sure?": 本当に？
-  "successfully created.": できた
-  "successfully updated.": できた
+  "successfully created": できた
+  "successfully updated": 更新した
   "New %<name>s": "%<name>sを追加"
   "Editing %<name>s": "%<name>sを編集"
 

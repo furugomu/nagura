@@ -1,3 +1,4 @@
+# -*- encoding: UTF-8 -*-
 class DojosController < ApplicationController
   respond_to :html, :json
   before_filter lambda{ @ranks = Rank.all }, exclude: :index
@@ -26,7 +27,7 @@ class DojosController < ApplicationController
 
     respond_to do |format|
       if @dojo.save
-        format.html { redirect_to :dojos, notice: t('successfully created.') }
+        format.html { redirect_to :root, notice: t('successfully created') }
         format.json { render json: @dojo, status: :created, location: @dojo }
       else
         format.html { render action: "new" }
@@ -40,7 +41,7 @@ class DojosController < ApplicationController
 
     respond_to do |format|
       if @dojo.update_attributes(params[:dojo])
-        format.html { redirect_to :dojos, notice: t('successfully updated.') }
+        format.html { redirect_to :root, notice: t('successfully updated') }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -54,7 +55,7 @@ class DojosController < ApplicationController
     @dojo.destroy
 
     respond_to do |format|
-      format.html { redirect_to dojos_url }
+      format.html { redirect_to :root }
       format.json { head :no_content }
     end
   end

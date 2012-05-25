@@ -1,5 +1,6 @@
 <h1>殴られ屋さん一覧</h1>
 
+<% [:notice, :error].each do |x|%><%=content_tag(:p, flash[x], 'class'=>x) if flash[x]%><% end %>
 <div>
 <%= link_to t('New %<name>s') % {name: Dojo.model_name.human}, [:new, :dojo] %>
 </div>
