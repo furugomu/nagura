@@ -1,8 +1,6 @@
 class DojosController < ApplicationController
   respond_to :html, :json
   before_filter lambda{ @ranks = Rank.all }, exclude: :index
-  caches_page :index, :if=>lambda{|c| c.params[:page].nil? }
-  cache_sweeper :dojo_sweeper
 
   def index
     @dojos = Dojo.includes(:rank).page(params[:page])
