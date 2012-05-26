@@ -1,6 +1,16 @@
 // Place all the styles related to the dojos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin button {
+  display: inline-block;
+  text-align: center;
+  min-width: 33px;
+  line-height: 33px;
+  padding: 0;
+  text-decoration: none;
+  border: solid 1px;
+}
+
 body {
   background: #F5FFFA;
   color: black;
@@ -35,19 +45,16 @@ td {
 }
 
 td.operation { white-space: nowrap; }
+td :link {
+  @include button;
+}
 
 .pagination {
   :link, .current {
-    display: inline-block;
-    text-align: center;
-    min-width: 33px;
-    line-height: 33px;
-    padding: 0;
-    text-decoration: none;
-    border: solid 1px;
+    @include button;
   }
-  :link {
-    background: #eee;
+  .current {
+    background: #ccc;
   }
 }
 
@@ -56,4 +63,8 @@ td.operation { white-space: nowrap; }
 }
 .even {
   background: #fff;
+}
+
+@media screen and (max-width: 320px) {
+  body { margin: 0; }
 }

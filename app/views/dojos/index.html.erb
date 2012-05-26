@@ -14,13 +14,13 @@
     <th><%= Dojo.human_attribute_name(:leader) %></th>
     <th><%= Dojo.human_attribute_name(:force) %></th>
     <th></th>
-    <th><%= Dojo.human_attribute_name(:description) %></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @dojos.each do |dojo| %>
-  <tr>
+  <% class_name = cycle('odd', 'even') %>
+  <%= content_tag(:tr, 'class'=>class_name) do %>
     <%= content_tag(:td, dojo.rank.name, 'class'=>'rank-'+dojo.rank.name) %>
     <td><%= dojo.level %></td>
     <!--<td><%= dojo.mbgaid %></td>-->
@@ -28,10 +28,14 @@
     <td><%= dojo.leader %></td>
     <td class="force"><%= dojo.force %></td>
     <td class="operation"><%= link_to_dojo t('Visit'), dojo, target: '_blank' %></td>
-    <td class="description"><%= dojo.description %></td>
     <td class="operation"><%= link_to t('Edit'), [:edit, dojo] %></td>
     <td class="operation"><%= link_to t('Destroy'), dojo, confirm: t('Are you sure?'), method: :delete %></td>
-  </tr>
+  <% end %>
+  <%= content_tag(:tr, 'class'=>class_name) do %>
+    <td colspan=8 class="description">
+     <%= dojo.description.presence || raw("&nbsp;") %>
+    </td>
+  <% end %>
 <% end %>
 </table>
 <%= paginate @dojos %>

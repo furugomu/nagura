@@ -17,7 +17,7 @@ class Dojo < ActiveRecord::Base
   end
 
   default_scope order("#{quoted_table_name}.rank_id desc, #{quoted_table_name}.level desc")
-  paginates_per 100
+  paginates_per 50
 
   def self.new_from_tsv(line)
     columns = [
