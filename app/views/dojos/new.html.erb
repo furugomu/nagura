@@ -2,4 +2,19 @@
 
 <%= render 'form' %>
 
-<p><%= link_to 'Back', dojos_path %></p>
+<h2>
+ <a href="https://docs.google.com/spreadsheet/lv?key=0AprwHw_VarWwdE9qWl8yWUk4bWpYQmMyclJDanNEcmc">
+  スプレッドシート
+ </a>
+ から貼り付け
+</h2>
+
+<%= form_for @dojo do |f| %>
+<p>一行分(「行」の列から「lastUpdate」の列まで)コピーしてきて貼り付ける</p>
+<p>
+ <%= f.text_area :tsv, size: '60x4' %>
+ <%= f.submit 'Go!' %>
+</p>
+<% end %>
+
+<p><%= link_to 'Back', :root %></p>
