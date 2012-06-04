@@ -11,6 +11,7 @@ class Dojo < ActiveRecord::Base
   validates :personality, inclusion: {in: PERSONALITIES}
   validates :leader, :force, length: {maximum: 255}
   validates :description, length: {maximum: 1000}
+  validates :mbgaid, uniqueness: true
 
   # 保存前に force から数字を抜き出して force_value へ
   before_save do |record|

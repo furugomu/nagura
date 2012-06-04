@@ -9,7 +9,7 @@ describe Dojo do
   end
 
   describe 'new from tsv' do
-    it 'hoge' do
+    it do
       create(:rank, name: 'SS')
       line = "10\t153\t..SS\t60251756\tCu\tスマホ\t応援\t"+
         "SR+桃華ちゃん\t5500前後\t24時間営業\t10\t2012/05/10"
@@ -18,6 +18,14 @@ describe Dojo do
       dojo.personality.should == 'cute'
       dojo.rank.name.should == 'SS'
     end
+  end
+
+  it 'モバゲーIDはユニーク' do
+    x = create(:dojo, mbgaid: '123456')
+    x.should be_valid
+    y = build(:dojo, mbgaid: x.mbgaid)
+    y.should_not be_valid
+    y.should have(1).errors_on(:mbgaid)
   end
 
 end
