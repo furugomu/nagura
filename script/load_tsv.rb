@@ -11,7 +11,7 @@ def main
     Dojo.transaction do
       $stdin.each_line do |line|
         begin
-          Dojo.new_from_tsv(line).save!
+          Dojo.create_or_update_from_tsv!(line)
         rescue =>e
           $stderr.puts(line)
           raise e
