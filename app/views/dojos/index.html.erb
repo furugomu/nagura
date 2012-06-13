@@ -5,7 +5,8 @@
 <%= link_to t('New %<name>s') % {name: Dojo.model_name.human}, [:new, :dojo] %>
 </div>
 
-<table>
+<table class="autopagerize_page_element">
+ <thead>
   <tr>
     <th><%= Dojo.human_attribute_name(:rank) %></th>
     <th><%= Dojo.human_attribute_name(:level) %></th>
@@ -17,7 +18,9 @@
     <th></th>
     <th></th>
   </tr>
+ </thead>
 
+ <tbody>
 <% @dojos.each do |dojo| %>
   <% class_name = cycle('odd', 'even') %>
   <%= content_tag(:tr, 'class'=>class_name) do %>
@@ -37,6 +40,7 @@
     </td>
   <% end %>
 <% end %>
+ </tbody>
 </table>
 <%= paginate @dojos %>
 
