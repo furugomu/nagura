@@ -17,6 +17,7 @@ ja:
       first: '最初'
       previous: '&laquo;'
       next: '&raquo;'
+      truncate: …
       last: '最後'
 
   activerecord:

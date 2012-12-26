@@ -1,11 +1,15 @@
 # -*- encoding: UTF-8 -*-
 module DojosHelper
   def link_to_dojo(text, dojo, options={})
-    link_to text, imcg_user_url(dojo.mbgaid), options
+    link_to text, battle_check_url(dojo.mbgaid), options
   end
 
   def imcg_user_url(mbgaid)
     imcg_url('http://125.6.169.35/idolmaster/profile/show/'+mbgaid.to_s)
+  end
+
+  def battle_check_url(mbgaid)
+    imcg_url('http://125.6.169.35/idolmaster/battle/battle_check/'+mbgaid.to_s)
   end
 
   def short_personality(p)

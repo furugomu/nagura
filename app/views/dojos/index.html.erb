@@ -14,7 +14,7 @@
     <th><%= Dojo.human_attribute_name(:personality) %></th>
     <th><%= Dojo.human_attribute_name(:leader) %></th>
     <th><%= Dojo.human_attribute_name(:force) %></th>
-    <th colspan=3>
+    <th colspan=2>
      <span id="reset-button-placeholder"></span>
     </th>
   </tr>
@@ -36,7 +36,6 @@
      <%= content_tag(:span, '', id: 'count%d' % dojo.mbgaid, class: 'count') %>
     </td>
     <td class="operation"><%= link_to t('Edit'), [:edit, dojo] %></td>
-    <td class="operation"><%= link_to t('Destroy'), dojo, confirm: t('Are you sure?'), method: :delete %></td>
   <% end %>
   <%= content_tag(:tr, 'class'=>class_name) do %>
     <td colspan=8 class="description">
