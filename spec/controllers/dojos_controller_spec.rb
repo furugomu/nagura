@@ -24,4 +24,50 @@ describe DojosController do
     end
   end
 
+  describe 'next' do
+    let(:dojo) {create(:dojo)}
+    it 'should assign @dojo' do
+      dojo
+      get 'next_dojo'
+      assigns(:dojo).should == dojo
+    end
+
+    it '殴る URL にリダイレクト' do
+      url = 'http://sp.pf.mbga.jp/12008305/?url=http%3A%2F%2F125.6.169.35' +
+        '%2Fidolmaster%2Fbattle%2Fbattle_check%2F' + dojo.mbgaid.to_s
+      get 'next_dojo'
+      response.should redirect_to(url)
+    end
+
+    it 'ガラケーでも殴る URL にリダイレクト' do
+      request.stub!(:mobile? => true)
+      url = 'http://pf.mbga.jp/12008305/?url=http%3A%2F%2F125.6.169.35' +
+        '%2Fidolmaster%2Fbattle%2Fbattle_check%2F' + dojo.mbgaid.to_s
+      get 'next_dojo'
+      response.should redirect_to(url)
+    end
+
+    describe 'with 複数の dojos' do
+      before do
+        2.times{create(:dojo)}
+      end
+
+      it '2回呼ぶと進む' do
+        get 'next_dojo'
+        first_dojo = assigns(:dojo)
+        get 'next_dojo'
+        assigns(:dojo).should_not == first_dojo
+      end
+
+      it '全ての道場分を実行すると最初に戻る' do
+        get 'next_dojo'
+        first_dojo = assigns(:dojo)
+        Dojo.count.times do
+          get 'next_dojo'
+        end
+        assigns(:dojo).should == first_dojo
+      end
+    end
+  end
+
 end

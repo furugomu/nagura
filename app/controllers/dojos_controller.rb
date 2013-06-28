@@ -59,4 +59,17 @@ class DojosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  include DojosHelper
+
+  def next_dojo
+    index = (cookies[:index] || 0).to_i
+    @dojo = Dojo.at(index)
+
+    index += 1
+    index = 0 unless index < Dojo.count 
+    cookies[:index] = {value: index.to_s, expires: 1.month.from_now}
+
+    redirect_to battle_check_url(@dojo.mbgaid)
+  end
 end

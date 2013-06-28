@@ -18,7 +18,11 @@ class Dojo < ActiveRecord::Base
     record.force_value = $1.to_i(10) if record.force.to_s =~ /(\d+)/
   end
 
-  default_scope order("#{quoted_table_name}.rank_id desc, #{quoted_table_name}.level desc")
+  default_scope order(<<-SQL.squish)
+    #{quoted_table_name}.rank_id desc,
+    #{quoted_table_name}.level desc,
+    mbgaid asc
+  SQL
   paginates_per 50
 
   def self.create_or_update_from_tsv!(line)
@@ -46,5 +50,9 @@ class Dojo < ActiveRecord::Base
       {'Cu'=>'cute', 'Co'=>'cool', 'Pa'=>'passion'}[attrs.delete(:type)]
     attrs[:rank_id] = Rank.find_by_name(attrs.delete(:rank_name).sub(/^\.+/, '')).id
     attrs
+  end
+
+  def self.at(n)
+    offset(n).first
   end
 end

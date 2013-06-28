@@ -10,7 +10,7 @@ FactoryGirl.define do
     personality 'cute'
     leader '島村卯月'
     force '1000'
-    mbgaid 99999999
+    sequence(:mbgaid)
     description '営業中'
   end
 end

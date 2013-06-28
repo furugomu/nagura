@@ -49,4 +49,15 @@ describe Dojo do
     y.should have(1).errors_on(:mbgaid)
   end
 
+  describe 'at' do
+    before do
+      2.times{create(:dojo)}
+    end
+    it 'with 0 should return 最初の奴 ' do
+      Dojo.at(0).should == Dojo.all.first
+    end
+    it 'with 1 should return 二番目の奴 ' do
+      Dojo.at(1).should == Dojo.all.second
+    end
+  end
 end
