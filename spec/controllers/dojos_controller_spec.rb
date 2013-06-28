@@ -25,26 +25,47 @@ describe DojosController do
   end
 
   describe 'next' do
-    let(:dojo) {create(:dojo)}
-    it 'should assign @dojo' do
-      dojo
-      get 'next_dojo'
-      assigns(:dojo).should == dojo
-    end
+    describe 'with dojo ひとつ' do
+      let!(:dojo) {create(:dojo)}
 
-    it '殴る URL にリダイレクト' do
-      url = 'http://sp.pf.mbga.jp/12008305/?url=http%3A%2F%2F125.6.169.35' +
-        '%2Fidolmaster%2Fbattle%2Fbattle_check%2F' + dojo.mbgaid.to_s
-      get 'next_dojo'
-      response.should redirect_to(url)
-    end
+      it 'should assign @dojo' do
+        get 'next_dojo'
+        assigns(:dojo).should == dojo
+      end
 
-    it 'ガラケーでも殴る URL にリダイレクト' do
-      request.stub!(:mobile? => true)
-      url = 'http://pf.mbga.jp/12008305/?url=http%3A%2F%2F125.6.169.35' +
+      it '殴る URL にリダイレクト' do
+        url = 'http://sp.pf.mbga.jp/12008305/?url=http%3A%2F%2F125.6.169.35' +
         '%2Fidolmaster%2Fbattle%2Fbattle_check%2F' + dojo.mbgaid.to_s
-      get 'next_dojo'
-      response.should redirect_to(url)
+        get 'next_dojo'
+        response.should redirect_to(url)
+      end
+
+      it 'ガラケーでも殴る URL にリダイレクト' do
+        request.stub!(:mobile? => true)
+        url = 'http://pf.mbga.jp/12008305/?url=http%3A%2F%2F125.6.169.35' +
+        '%2Fidolmaster%2Fbattle%2Fbattle_check%2F' + dojo.mbgaid.to_s
+        get 'next_dojo'
+        response.should redirect_to(url)
+      end
+
+      describe 'リファラーがある' do
+        before do
+          request.env['HTTP_REFERER'] = request.protocol+request.host_with_port+'/hoge'
+        end
+        it 'HTML を吐く' do
+          get 'next_dojo'
+          response.should render_template(:next_dojo)
+        end
+      end
+
+      describe 'クッキーの期限は' do
+        context '今5時前なら' do
+          it 'should be 今日の5時'
+        end
+        context '今5時以降なら' do
+          it 'should be 明日の5時'
+        end
+      end
     end
 
     describe 'with 複数の dojos' do

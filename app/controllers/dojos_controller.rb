@@ -63,11 +63,15 @@ class DojosController < ApplicationController
   include DojosHelper
 
   def next_dojo
+    if request.referer.try(:start_with?, request.protocol+request.host_with_port)
+      render and return
+    end
+
     index = (cookies[:index] || 0).to_i
     @dojo = Dojo.at(index)
 
     index += 1
-    index = 0 unless index < Dojo.count 
+    index = 0 unless index < Dojo.count
     cookies[:index] = {value: index.to_s, expires: 1.month.from_now}
 
     redirect_to battle_check_url(@dojo.mbgaid)
