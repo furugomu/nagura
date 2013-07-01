@@ -72,8 +72,14 @@ class DojosController < ApplicationController
 
     index += 1
     index = 0 unless index < Dojo.count
-    cookies[:index] = {value: index.to_s, expires: 1.month.from_now}
+    cookies[:index] = {value: index.to_s, expires: next_5ji}
 
     redirect_to battle_check_url(@dojo.mbgaid)
+  end
+
+  def next_5ji
+    t = Time.zone.now
+    t = t.tomorrow if t.hour >= 5
+    Time.zone.local(t.year, t.month, t.day, 5)
   end
 end

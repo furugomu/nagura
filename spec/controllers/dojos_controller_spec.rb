@@ -60,10 +60,21 @@ describe DojosController do
 
       describe 'クッキーの期限は' do
         context '今5時前なら' do
-          it 'should be 今日の5時'
+          before { Timecop.freeze(Time.zone.local(2012, 7, 25, 4, 59, 59)) }
+          it 'should be 今日の5時' do
+            get 'next_dojo'
+            response.headers['Set-Cookie'].should =~
+              /expires=Tue, 24-Jul-2012 20:00:00 GMT/
+          end
         end
         context '今5時以降なら' do
-          it 'should be 明日の5時'
+          before { Timecop.freeze(Time.zone.local(2012, 12, 31, 5, 0, 0)) }
+          it 'should be 明日の5時' do
+            p Time.zone.now
+            get 'next_dojo'
+            response.headers['Set-Cookie'].should =~
+              /expires=Mon, 31-Dec-2012 20:00:00 GMT/
+          end
         end
       end
     end
