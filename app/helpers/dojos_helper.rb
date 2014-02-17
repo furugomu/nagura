@@ -9,7 +9,7 @@ module DojosHelper
   end
 
   def battle_check_url(mbgaid)
-    imcg_url('http://125.6.169.35/idolmaster/battle/battle_check/'+mbgaid.to_s)
+    imcg_url('http://125.6.169.35/idolmaster/battles/battle_check/'+mbgaid.to_s)
   end
 
   def short_personality(p)
